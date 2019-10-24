@@ -3,6 +3,7 @@
     Login Page
   </title>
 </head>
+
 <body>
   <div class="container">
     <div class="d-flex justify-content-center h-100">
@@ -10,25 +11,50 @@
         <div class="card-header">
           <h3>Login</h3>
           <div class="d-flex justify-content-end social_icon">
-          <span><fa-icon [icon]="['fab', 'facebook-square']"></fa-icon></span>
-          <span><fa-icon [icon]="['fab', 'google-plus-square']"></fa-icon></span>
-          <span><fa-icon [icon]="['fab', 'twitter-square']"></fa-icon></span>
-				</div>
+            <span>
+              <fa-icon [icon]="['fab', 'facebook-square']"></fa-icon>
+            </span>
+            <span>
+              <fa-icon [icon]="['fab', 'google-plus-square']"></fa-icon>
+            </span>
+            <span>
+              <fa-icon [icon]="['fab', 'twitter-square']"></fa-icon>
+            </span>
+          </div>
         </div>
         <div class="card-body">
-          <form>
+          <form [formGroup]="loginForm" novalidate (ngSubmit)="onSubmit()">
             <div class="input-group form-group">
               <div class="input-group-prepend">
-                <span class="input-group-text"><fa-icon [icon]="['fas', 'user']"></fa-icon></span>
+                <span class="input-group-text">
+                  <fa-icon [icon]="['fas', 'user']"></fa-icon>
+                </span>
               </div>
-              <input type="text" class="form-control" placeholder="username">
+              <input type="text" class="form-control" formControlName="usuario" placeholder="usuário">
 
             </div>
+            <div
+              *ngIf="loginForm.controls['usuario'].invalid && (loginForm.controls['usuario'].dirty || loginForm.controls['usuario'].touched)"
+              class="alert alert-danger">
+              <div *ngIf="loginForm.controls['usuario'].errors.required">
+                O usuário é requerido.
+              </div>
+            </div>
+
             <div class="input-group form-group">
               <div class="input-group-prepend">
-                <span class="input-group-text"><fa-icon [icon]="['fas', 'key']"></fa-icon></span>
+                <span class="input-group-text">
+                  <fa-icon [icon]="['fas', 'key']"></fa-icon>
+                </span>
               </div>
-              <input type="password" class="form-control" placeholder="password">
+              <input type="password" class="form-control" formControlName="senha" placeholder="senha">
+            </div>
+            <div
+              *ngIf="loginForm.controls['senha'].invalid && (loginForm.controls['senha'].dirty || loginForm.controls['senha'].touched)"
+              class="alert alert-danger">
+              <div *ngIf="loginForm.controls['senha'].errors.required">
+                A senha é requerida.
+              </div>
             </div>
             <div class="row align-items-center remember">
               <input type="checkbox">Me Lembre
