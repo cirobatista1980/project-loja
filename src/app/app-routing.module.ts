@@ -1,8 +1,11 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { MasterPageComponent } from './pages/master-page/master-page.component';
 
 
-const routes: Routes = [];
+const routes: Routes = [
+  { path: '', component: MasterPageComponent },
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
